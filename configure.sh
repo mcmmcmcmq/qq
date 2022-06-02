@@ -71,8 +71,8 @@ runTtyd(){
     done
 }
 
-frp >$HOME/fpr.log 2>&1
-runTtyd >$HOME/ttyd.log 2>&1
-autoBak >$HOME/bak.log 2>&1
-installRclone
+frp &
+runTtyd &
+autoBak &
+installRclone 
 checkIsInstall 
