@@ -63,6 +63,7 @@ autoBak() {
 
 
 autoBak &
+frp
 installRclone 
 checkIsInstall 
 sed -i -e 's/$PORT/'"$PORT"'/g' /etc/supervisord.conf
