@@ -42,7 +42,7 @@ checkIsInstall() {
             echo "解压完毕"
             tmux new -s mc -d
             tmux send-key -t mc "cd /${HOME}/mc" Enter
-            tmux send-key -t mc "java -Xmx500M -Xms64M -jar $HOME/mc/server.jar nogui" Enter
+            tmux send-key -t mc "java -Xmx420M -Xms64M -jar $HOME/mc/server.jar nogui" Enter
             echo '服务执行完毕'
         else
             echo "文件不存在"
