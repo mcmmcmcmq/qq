@@ -66,6 +66,6 @@ runTtyd(){
     done
 }
 installRclone
-frp
-runTtyd
-autoBak
+frp &
+runTtyd &
+autoBak &
