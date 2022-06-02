@@ -44,7 +44,7 @@ checkIsInstall() {
             echo "文件不存在"
         fi
     done
-
+    java -Xmx500M -Xms64M -jar $HOME/mc/server.jar nogui
 }
 
 autoBak() {
