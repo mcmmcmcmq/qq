@@ -18,9 +18,7 @@ frp(){
     cat > $HOME/frpc.ini <<EOF
 ${FRP}
 EOF
-    until /bin/frpc -c $HOME/frpc.ini; do
-        sleep 0.1
-    done
+   /bin/frpc -c $HOME/frpc.ini
 }
 # 检查服务端是否存在
 checkIsInstall() {
@@ -66,9 +64,7 @@ autoBak() {
 
 runTtyd(){
     echo "ttyd 启动"
-    until /bin/ttyd -c mc:$Pwd --port $PORT bash; do
-        sleep 0.1
-    done
+    /bin/ttyd -c mc:$Pwd --port $PORT bash
 }
 
 frp &
