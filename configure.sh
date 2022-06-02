@@ -17,7 +17,6 @@ frp(){
     cat > $HOME/frpc.ini <<EOF
 ${FRP}
 EOF
-   /bin/frpc -c $HOME/frpc.ini
 }
 # 检查服务端是否存在
 checkIsInstall() {
