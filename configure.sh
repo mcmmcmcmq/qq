@@ -1,5 +1,4 @@
 #!/bin/bash
-export SCREENDIR=$HOME/.screen
 installRclone() {
     cd /tmp
     echo "正在安装rclone..."
@@ -42,7 +41,7 @@ checkIsInstall() {
             echo "解压完毕"
             tmux new -s mc -d
             tmux send-key -t mc "cd /${HOME}/mc" Enter
-            tmux send-key -t mc "java -Xmx420M -Xms64M -jar $HOME/mc/server.jar nogui" Enter
+            tmux send-key -t mc "java -Xmx400M -Xms64M -jar $HOME/mc/server.jar nogui" Enter
             echo '服务执行完毕'
         else
             echo "文件不存在"
@@ -62,13 +61,9 @@ autoBak() {
     done
 }
 
-runTtyd(){
-    echo "ttyd 启动"
-    /bin/ttyd -c mc:$Pwd --port $PORT bash
-}
 
-frp &
-runTtyd &
 autoBak &
 installRclone 
-#checkIsInstall 
+checkIsInstall 
+sed -i -e 's/$PORT/'"$PORT"'/g' /etc/supervisord.conf
+supervisord -c /etc/supervisord.conf
