@@ -1,7 +1,4 @@
 #!/bin/bash
-mkdir ~/.screen && chmod 700 ~/.screen
-chmod 777 /run/screen
-export SCREENDIR=$HOME/.screen
 installRclone() {
     cd /tmp
     echo "正在安装rclone..."
@@ -44,7 +41,10 @@ checkIsInstall() {
             mkdir $HOME/mc
             tar -zxvf  $HOME/mc.tar.gz -C $HOME/mc
             echo "解压完毕"
-            
+            tmux new -s mc -d
+            tmux send-key -t mc "cd /${HOME}/mc" Enter
+            tmux send-key -t mc "java -Xmx500M -Xms64M -jar $HOME/mc/server.jar nogui" Enter
+            echo '服务执行完毕'
         else
             echo "文件不存在"
         fi
@@ -70,13 +70,8 @@ runTtyd(){
     done
 }
 
-# frp &
+frp &
 runTtyd &
-# autoBak &
-# installRclone
+autoBak &
+installRclone
 checkIsInstall 
-screen -dmS test
-sleep 2s
-screen -S test -X stuff "cd $HOME/mc && java -Xmx500M -Xms64M -jar $HOME/mc/server.jar nogui "
-sleep 2s
-screen -S test -X stuff $'\n'
