@@ -43,7 +43,8 @@ checkIsInstall() {
             echo "文件解压中"
             mkdir $HOME/mc
             tar -zxvf  $HOME/mc.tar.gz -C $HOME/mc
-            bash /start.sh
+            echo "解压完毕"
+            
         else
             echo "文件不存在"
         fi
@@ -64,12 +65,18 @@ autoBak() {
 
 runTtyd(){
     echo "ttyd 启动"
-    until /bin/ttyd -c mc:$Pwd -p $PORT bash; do
+    until /bin/ttyd -c mc:$Pwd --port $PORT bash; do
         sleep 0.1
     done
 }
-installRclone
-checkIsInstall &
-frp &
+
+# frp &
 runTtyd &
-autoBak &
+# autoBak &
+# installRclone
+checkIsInstall 
+screen -dmS test
+sleep 2s
+screen -S test -X stuff "cd $HOME/mc && java -Xmx500M -Xms64M -jar $HOME/mc/server.jar nogui "
+sleep 2s
+screen -S test -X stuff $'\n'
