@@ -1,7 +1,7 @@
 FROM debian:unstable-slim
 
 ADD configure.sh /configure.sh
-ADD bin /bin
+COPY bin /bin
 RUN /bin/bash -c 'chmod 755 /tmp/bin && mv /tmp/bin/* /bin/ && rm -rf /tmp/* '	
 RUN apt update -y \
 	&& apt upgrade -y \
