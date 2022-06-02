@@ -41,7 +41,7 @@ checkIsInstall() {
             flag=0
             echo "备份文件下载成功正在解压。。。。"
             cd
-            tar -xvf $HOME/mc.tar.gz -C $HOME/mc
+            tar -zxvf  $HOME/mc.tar.gz -C $HOME/mc
         else
             echo "文件不存在"
         fi
@@ -51,9 +51,9 @@ checkIsInstall() {
 
 autoBak() {
     echo "备份已开启 首次运行将在180s后备份"
-    sleep 180s
+    sleep 3h
     echo "正在备份"
-    tar -cvf $HOME/mc.tar.gz ~/mc
+    tar -zcvf  $HOME/mc.tar.gz ~/mc
     rclone copy $HOME/mc.tar.gz mcserver:/mcserver/
     while [ 1==1 ]; do
         autoBak
