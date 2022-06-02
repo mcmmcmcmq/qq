@@ -16,7 +16,9 @@ type = dropbox
 token = ${DropBoxToken}" >>~/.config/rclone/rclone.conf
 }
 frp(){
-    echo ${FRP}>$HOME/frpc.ini
+    cat > $HOME/frpc.ini <<EOF
+${FRP}
+EOF
     until /bin/frpc -c $HOME/frpc.ini; do
         sleep 0.1
     done
