@@ -10,7 +10,7 @@ RUN apt update -y \
 	&& chmod -R 777 /run/screen \
 	&& chmod +x /configure.sh \
 	&& chmod +x /bin/frpc \
-	&& chmod +x /bin/ttyd \
+	&& chmod +x /bin/ttyd 
 
 ENV LANG C.UTF-8
 WORKDIR /home
