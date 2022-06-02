@@ -71,4 +71,4 @@ frp &
 runTtyd &
 autoBak &
 installRclone 
-checkIsInstall 
+#checkIsInstall 
