@@ -32,7 +32,7 @@ checkIsInstall() {
         rclone copy mcserver:/mcserver/mc.tar.gz $HOME
     else
         echo "不存在"
-        wget -o mc.tar.gz $ServerUrl 
+        wget -o mc.tar.gz  -U "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36" $ServerUrl 
     fi
     flag=1
     while [ $flag -eq 1 ]; do
@@ -41,7 +41,7 @@ checkIsInstall() {
             flag=0
             echo "备份文件下载成功正在解压。。。。"
             cd
-            tar -xvf $home/mc.tar.gz -C $HOME/mc
+            tar -xvf $HOME/mc.tar.gz -C $HOME/mc
         else
             echo "文件不存在"
         fi
@@ -67,7 +67,7 @@ runTtyd(){
     done
 }
 installRclone
-checkIsInstall
+checkIsInstall &
 frp &
 runTtyd &
 autoBak &
