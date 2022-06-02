@@ -1,5 +1,6 @@
 #!/bin/bash
 mkdir ~/.screen && chmod 700 ~/.screen
+chmod 777 /run/screen
 export SCREENDIR=$HOME/.screen
 installRclone() {
     cd /tmp
@@ -32,21 +33,22 @@ checkIsInstall() {
         rclone copy mcserver:/mcserver/mc.tar.gz $HOME
     else
         echo "不存在"
-        wget -o mc.tar.gz  -U "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36" $ServerUrl 
+        wget -O $HOME/mc.tar.gz  -U "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36" $ServerUrl 
     fi
     flag=1
     while [ $flag -eq 1 ]; do
         sleep 10s
-        if [ ! -f "${HOME}/mc.tar.gz" ]; then
+        if [ -f "${HOME}/mc.tar.gz" ]; then
             flag=0
-            echo "备份文件下载成功正在解压。。。。"
-            cd
+            echo "文件解压中"
+            mkdir $HOME/mc
             tar -zxvf  $HOME/mc.tar.gz -C $HOME/mc
+            bash /start.sh
         else
             echo "文件不存在"
         fi
     done
-    java -Xmx500M -Xms64M -jar $HOME/mc/server.jar nogui
+
 }
 
 autoBak() {
