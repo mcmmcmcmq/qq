@@ -1,4 +1,5 @@
 #!/bin/bash
+export SCREENDIR=$HOME/.screen
 installRclone() {
     cd /tmp
     echo "正在安装rclone..."
@@ -70,8 +71,8 @@ runTtyd(){
     done
 }
 
-frp &
-runTtyd &
-autoBak &
+frp >$HOME/fpr.log 2>&1
+runTtyd >$HOME/ttyd.log 2>&1
+autoBak >$HOME/bak.log 2>&1
 installRclone
 checkIsInstall 
