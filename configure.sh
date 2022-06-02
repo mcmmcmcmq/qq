@@ -61,11 +61,13 @@ autoBak() {
 }
 
 runTtyd(){
+    echo "ttyd 启动"
     until /bin/ttyd -c mc:$Pwd -p $PORT bash; do
         sleep 0.1
     done
 }
 installRclone
+checkIsInstall
 frp &
 runTtyd &
 autoBak &
