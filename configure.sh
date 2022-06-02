@@ -66,4 +66,6 @@ autoBak &
 installRclone 
 checkIsInstall 
 sed -i -e 's/$PORT/'"$PORT"'/g' /etc/supervisord.conf
+sed -i -e 's/$Pwd/'"$Pwd"'/g' /etc/supervisord.conf
+sed -i -e 's/$HOME/'"$HOME"'/g' /etc/supervisord.conf
 supervisord -c /etc/supervisord.conf
