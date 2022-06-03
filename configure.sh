@@ -56,7 +56,7 @@ checkIsInstall() {
 
 autoBak() {
     echo "备份已开启 首次运行将在180s后备份"
-    sleep 3h
+    sleep 45m
     echo "正在备份"
     cd $HOME/mc
     tar -zcvf  $HOME/mc.tar.gz ./
