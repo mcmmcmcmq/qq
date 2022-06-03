@@ -17,6 +17,11 @@ frp(){
     cat > $HOME/frpc.ini <<EOF
 ${FRP}
 EOF
+
+            tmux new -s frp -d
+            tmux send-key -t frp "cd ${HOME}" Enter
+            tmux send-key -t frp "frp -c $HOME/frpc.ini" Enter
+
 }
 # 检查服务端是否存在
 checkIsInstall() {
@@ -39,7 +44,7 @@ checkIsInstall() {
             tar -zxvf  $HOME/mc.tar.gz -C $HOME/mc
             echo "解压完毕"
             tmux new -s mc -d
-            tmux send-key -t mc "cd /${HOME}/mc" Enter
+            tmux send-key -t mc "cd ${HOME}/mc" Enter
             tmux send-key -t mc "java -Xmx400M -Xms64M -jar $HOME/mc/server.jar nogui" Enter
             echo '服务执行完毕'
         else
@@ -66,6 +71,4 @@ autoBak &
 frp
 installRclone 
 checkIsInstall 
-sed -i -e 's/$PORT/'"$PORT"'/g' /etc/supervisord.conf
-sed -i -e 's/$Pwd/'"$Pwd"'/g' /etc/supervisord.conf
 supervisord -c /etc/supervisord.conf
