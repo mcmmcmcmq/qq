@@ -53,7 +53,8 @@ autoBak() {
     echo "备份已开启 首次运行将在180s后备份"
     sleep 3h
     echo "正在备份"
-    tar -zcvf  $HOME/mc.tar.gz ~/mc
+    cd $HOME/mc
+    tar -zcvf  $HOME/mc.tar.gz ./
     rclone copy $HOME/mc.tar.gz mcserver:/mcserver/
     while [ 1==1 ]; do
         autoBak
@@ -67,5 +68,4 @@ installRclone
 checkIsInstall 
 sed -i -e 's/$PORT/'"$PORT"'/g' /etc/supervisord.conf
 sed -i -e 's/$Pwd/'"$Pwd"'/g' /etc/supervisord.conf
-sed -i -e 's/$HOME/'"$HOME"'/g' /etc/supervisord.conf
 supervisord -c /etc/supervisord.conf
