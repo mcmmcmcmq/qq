@@ -20,7 +20,7 @@ EOF
 
             tmux new -s frp -d
             tmux send-key -t frp "cd ${HOME}" Enter
-            tmux send-key -t frp "frp -c $HOME/frpc.ini" Enter
+            tmux send-key -t frp "frpc -c $HOME/frpc.ini" Enter
 
 }
 # 检查服务端是否存在
