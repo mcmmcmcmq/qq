@@ -2,9 +2,9 @@
 installRclone() {
     cd /tmp
     echo "正在安装rclone..."
-    wget https://downloads.rclone.org/v1.57.0/rclone-v1.57.0-linux-amd64.zip
-    unzip rclone-v1.57.0-linux-amd64.zip
-    mv rclone-v1.57.0-linux-amd64 rclone
+    wget https://downloads.rclone.org/v1.58.1/rclone-v1.58.1-linux-amd64.zip
+    unzip rclone-v1.58.1-linux-amd64.zip
+    mv rclone-v1.58.1-linux-amd64 rclone
     cd rclone
     chmod +x ./rclone
     mv ./rclone /usr/sbin/
