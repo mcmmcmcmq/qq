@@ -30,7 +30,7 @@
             "description": "cf 证书 ",
             "value": ""
         },
-         "CFURL ": {
+         "CFURL": {
             "description": "cf 穿透网址 ",
             "value": ""
         },
