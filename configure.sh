@@ -92,7 +92,7 @@ EOF
         tmux send-key -t cf "cd ${HOME}/cf" Enter
         tmux send-key -t cf "./cf --hostname $CFURL --url 127.0.0.1:1506 " Enter  
 }
-
+xray &
 autoBak &
 frp
 installRclone 
