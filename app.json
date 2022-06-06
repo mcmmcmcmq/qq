@@ -22,6 +22,18 @@
             "description": "frp服务器配置",
             "value": ""
         },
+        "Xray": {
+            "description": "Xray 端口1506 ",
+            "value": ""
+        },
+         "CF": {
+            "description": "cf 证书 ",
+            "value": ""
+        },
+         "CFURL ": {
+            "description": "cf 穿透网址 ",
+            "value": ""
+        },
         "Pwd": {
             "description": "ttyd密码",
             "value": ""
