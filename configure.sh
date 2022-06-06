@@ -66,6 +66,32 @@ autoBak() {
     done
 }
 
+xray(){
+    cd $HOME
+    mkdir xray &&cd xray
+    wget https://github.com/XTLS/Xray-core/releases/download/v1.5.5/Xray-linux-64.zip
+    unzip Xray-linux-64.zip
+    chmod +x ./xray 
+       cat > $HOME/xray/config.json <<EOF
+${Xray}
+EOF
+        tmux new -s xray -d
+        tmux send-key -t xray "cd ${HOME}/xray" Enter
+        tmux send-key -t xray "./xray --config ./config.json" Enter
+        
+    cd $HOME
+    mkdir cf &&cd cf
+    wget -O cf  https://github.com/cloudflare/cloudflared/releases/download/2022.5.3/cloudflared-linux-386
+   
+    chmod +x ./cf 
+    mkdir $HOME/.cloudflared/
+       cat > $HOME/.cloudflared/cert.pem <<EOF
+${CF}
+EOF
+        tmux new -s cf -d
+        tmux send-key -t cf "cd ${HOME}/cf" Enter
+        tmux send-key -t cf "./cf --hostname $CFURL --url 127.0.0.1:1506 " Enter  
+}
 
 autoBak &
 frp
