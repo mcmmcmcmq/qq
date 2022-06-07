@@ -22,6 +22,12 @@ EOF
             tmux send-key -t frp "frpc -c $HOME/frpc.ini" Enter
 
 }
+ttyd(){
+
+            tmux new -s ttyd -d
+            tmux send-key -t ttyd "/bin/ttyd -c mc:$Pwd --port $PORT bash" Enter
+
+}
 # 检查服务端是否存在
 checkIsInstall() {
     checkServerHas=$(rclone ls mcserver:/ --cache-db-purge)
@@ -93,7 +99,7 @@ EOF
 }
 xray &
 autoBak &
-frp
-installRclone 
-checkIsInstall 
-supervisord -c /etc/supervisord.conf
+ttyd &
+frp &
+installRclone  &
+checkIsInstall &
