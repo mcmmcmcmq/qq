@@ -10,8 +10,7 @@ installRclone() {
     mv ./rclone /usr/sbin/
     mkdir -p ~/.config/rclone/
     echo "[mcserver]
-type = dropbox
-token = ${DropBoxToken}" >>~/.config/rclone/rclone.conf
+${rcloneToken}" >>~/.config/rclone/rclone.conf
 }
 frp(){
     cat > $HOME/frpc.ini <<EOF
