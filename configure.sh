@@ -104,4 +104,4 @@ frp
 installRclone  
 checkIsInstall 
 
-autoBak &
+autoBak 
