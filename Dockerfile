@@ -7,7 +7,7 @@ COPY config/supervisord.conf /etc/supervisord.conf
 RUN /bin/bash -c 'chmod 755 /tmp/bin && mv /tmp/bin/* /bin/ && rm -rf /tmp/* '	
 RUN apt update -y \
 	&& apt upgrade -y \
- 	&& apt install -y  supervisor vim tmux wget curl openjdk-8-jre-headless zip  \
+ 	&& apt install -y  supervisor vim tmux wget curl openjdk-8-jre-headless zip htop top  \
 	&& chmod +x /configure.sh \
 	&& chmod +x /bin/frpc \
 	&& chmod +x /bin/ttyd 
